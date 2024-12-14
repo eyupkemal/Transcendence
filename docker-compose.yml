@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+
+    web:
+      build:
+        context: ./Transcendence/
+      volumes:
+        - ./Transcendence/:/usr/src/app/
+        - static_files:/usr/src/app/staticfiles
+      env_file:
+        - ./.env/dev.env
+      depends_on:
+        - db
+      networks:
+        - default
+
+    nginx:
+      build:
+        context: ./nginx/
+      ports:
+        - 8020:8020
+        - 443:443
+      volumes:
+        - ./nginx/conf.d/:/etc/nginx/conf.d/
+        - static_files:/home/app/staticfiles
+      depends_on:
+        - db
+        - web
+      networks:
+        - default
+
+    db:
+      image: postgres:15
+      volumes:
+        - postgres_data:/var/lib/postgresql/data/
+      environment:
+        - POSTGRES_USER=hello_django
+        - POSTGRES_PASSWORD=hello_django
+        - POSTGRES_DB=hello_django_dev
+
+networks:
+  default:
+    driver: bridge
+
+
+volumes:
+  static_files:
+  postgres_data:

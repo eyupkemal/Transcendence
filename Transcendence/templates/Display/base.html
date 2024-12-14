@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transcendence</title>
+
+  <script type="importmap">
+      {
+        "imports": {
+        "three": "https://unpkg.com/three@v0.149.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@v0.149.0/examples/jsm/"
+        }
+      }
+      </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link href="{% static 'Display/css/main.css' %}" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link href="{% static 'Display/css/nav.css' %}" rel="stylesheet">
+  <link href="{% static 'Display/css/settings.css' %}" rel="stylesheet">
+  <link href="{% static 'Display/css/login.css' %}" rel="stylesheet">
+  <link href="{% static 'Display/css/profile.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <style>
+  </style>
+  <link rel="shortcut icon" href="media/images.png" type="image/x-icon">
+</head>
+
+
+<body class="backgroundimage">
+  <div class="userName" id="{{user.username}}"></div>
+  <div id="navigation">
+    {% include 'Display/nav.html' %}
+
+    <div class="toast" role="alert" id="EpicToast-invite" aria-live="polite" aria-atomic="true" style="position: fixed; bottom: 10px; left: 10px; z-index: 10">
+      <div class="toast-body">
+        <strong class="me-auto" id="toast-invite-title">Tahil Has invited you to play pong</strong>
+        <div class="mt-2 pt-2 border-top">
+          <button type="button" class="btn btn-primary btn-sm" id="accept-pong-invite" onclick="inviteAccepting()" data-bs-dismiss="toast">Take action</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="toast" role="alert" id="EpicToast-chat" aria-live="assertive" aria-atomic="true"
+      style="position: absolute; margin-left: 88%;">
+      <div class="toast-header">
+        <strong class="me-auto" id="toast-title"></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toast-message">
+        Test.
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div id="app">
+
+  </div>
+
+  <script src="{% static 'Display/js/navi.js' %}"></script>
+
+
+</body>
+
+</html>
